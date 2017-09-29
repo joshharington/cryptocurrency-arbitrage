@@ -140,6 +140,9 @@ async function computePrices(data) {
                 results.sort(function (a, b) {
                     return a.spread - b.spread;
                 });
+
+                console.log('results', results.length);
+
                 console.log('Finishing function...');
                 resolve();
             }
@@ -152,6 +155,10 @@ async function computePrices(data) {
 
     io.emit('results', results);
 }
+
+io.on('results', function(socket) {
+    console.log('results: ', socket);
+});
 
 
 (async function main() {
